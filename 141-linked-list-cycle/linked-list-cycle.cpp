@@ -9,16 +9,16 @@
  //if pointer part contains 
 class Solution {
 public:
-    bool hasCycle(ListNode* head) {
-        ListNode* slow = head;
-        ListNode* fast = head;
-        while (fast && fast->next) {
-            slow = slow->next;
-            fast = fast->next->next;
-            if (slow == fast) {
-                return true;
+    bool hasCycle(ListNode *head) {
+        unordered_map<ListNode*, bool> m;  // map to track visited nodes
+        ListNode* temp = head;
+        while (temp != NULL) {
+            if (m[temp] == true) {
+                return true;  // cycle detected
             }
+            m[temp] = true;
+            temp = temp->next;
         }
-        return false;
+        return false;  // no cycle
     }
 };
